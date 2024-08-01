@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="PhysGen: Rigid-Body Physics-Grounded Image-to-Video Generation.">
+  <meta name="keywords" content="contact, hand-object interaction, grasp synthesis">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PhysGen: Rigid-Body Physics-Grounded Image-to-Video Generation</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <script src="http://www.google.com/jsapi" type="text/javascript"></script> 
+  <script type="text/javascript">google.load("jquery", "1.3.2");</script>
+  <script
+        type="module"
+        src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+  ></script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title"><span>PhysGen</span>: Rigid-Body Physics-Grounded Image-to-Video Generation</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://stevenlsw.github.io/">Shaowei Liu</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://jason718.github.io/">Zhongzheng Ren</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://saurabhg.web.illinois.edu/">Saurabh Gupta*</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://shenlong.web.illinois.edu/">Shenlong Wang*</a><sup>1</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Illinois Urbana-Champaign,</span>
+            <span class="author-block"><sup>2</sup>Apple</span><br/>
+            <span class="authors-block">&ast; Equal Advising</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">ECCV 2024</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://drive.google.com/file/d/1JPtu11nhonYOydFl2Btf_y_n9zVT5QPP/view?usp=sharing"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span> -->
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Slide Link. -->
+              <!-- <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-slideshare"></i>
+                  </span>
+                  <span>Slide</span>
+                </a>
+              </span> -->
+              <!-- <span class="link-block">
+                <a href="" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fab fa-twitter"></i>
+                  </span>
+                  <span>Twitter</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/stevenlsw/physgen"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+        <video id="teaser" autoplay muted loop playsinline width="100%">
+            <source src="static/videos/teaser.mp4" type="video/mp4" />
+          </video>    
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            We present <b>PhysGen</b>, a novel image-to-video generation method that converts a single image and an input condition (e.g., force and torque applied to an object in the image) to produce a realistic, physically plausible, and temporally consistent video.
+            Our key insight is to integrate model-based physical simulation with a data-driven video generation process, enabling plausible image-space dynamics. At the heart of our system are three core components: 
+            (i) an image understanding module that effectively captures the geometry, materials, and physical parameters of the image; 
+            (ii) an image-space dynamics simulation model that utilizes rigid-body physics and inferred parameters to simulate realistic behaviors; 
+            and (iii) an image-based rendering and refinement module that leverages generative video diffusion to produce realistic video footage featuring the simulated motion. 
+            The resulting videos are realistic in both physics and appearance and are even precisely controllable, 
+            showcasing superior results over existing data-driven image-to-video generation works through quantitative comparison and comprehensive user study. 
+            PhysGen's resulting videos can be used for various downstream applications, such as turning an image into a realistic animation or allowing users to interact with the image and create various dynamics. 
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src=""
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+
+  </div>
+</section>
+
+
+<section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Overview</h2>
+          <div class="content has-text-justified">
+            <p>
+                Our framework consists of three interleaved components: the perception module, the dynamics simulation module, and the rendering module. 
+                The perception module interprets the semantics, geometry, and physical parameters in the given image. 
+                The dynamics simulation module simulates the rigid-body motion and interactions of each instance in the scene, governed by Newton's Laws and physical constraints. 
+                The rendering module renders the final outcome, 
+                leveraging an off-the-shelf relighting model and diffusion-model-based video priors.
+              </p>
+            <center><img src="static/figs/method.png" alt="setting" width="100%" /></center>
+          </div>
+
+          <h2 class="title is-3">Qualitative Comparison</h2>
+            <div class="content has-text-justified">
+          <video id="main" autoplay controls muted loop playsinline width="100%">
+            <source src="https://drive.google.com/file/d/14MW96pLBEIfXKKFeC9xY_JiYirl7L22R/view?usp=sharing" type="video/mp4" />
+          </video>
+         </div>
+      
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{liu2024physgen,
+      title={PhysGen: Rigid-Body Physics-Grounded Image-to-Video Generation},
+      author={Liu, Shaowei and Ren, Zhongzheng and Gupta, Saurabh and Wang, Shenlong},
+      booktitle={European Conference on Computer Vision (ECCV)},
+      year={2024}
+    }
+</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/stevenlsw/physgen" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <div class="columns is-centered"><p>
+            This website template is borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Here</a>.
+          </p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
