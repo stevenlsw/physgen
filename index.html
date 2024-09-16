@@ -42,6 +42,27 @@
     <script src="./static/js/bulma-slider.min.js"></script>
     <script src="./static/js/index.js"></script>
 
+    <style>
+        /* Gradient text style */
+        .gradient-text {
+            background-image: linear-gradient(to right, #b59f00, green, blue); /* Darker yellow */
+            -webkit-background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-clip: text;
+            font-weight: bold; /* Make the text bold */
+        }
+
+        .title.is-1.publication-title {
+            font-size: 48px;
+            font-weight: bold;
+            background-image: linear-gradient(to right, #b59f00, green, blue); /* Darker yellow */
+            -webkit-background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-clip: text;
+        }
+    </style>
 
 </head>
 
@@ -58,7 +79,7 @@
                             <span class="author-block">
                                 <a href="https://stevenlsw.github.io/">Shaowei Liu</a><sup>1</sup>,</span>
                             <span class="author-block">
-                                <a href="https://jason718.github.io/">Zhongzheng Ren</a><sup>2</sup>,</span>
+                                <a href="https://jason718.github.io/">Zhongzheng Ren</a><sup>1</sup>,</span>
                             <span class="author-block">
                                 <a href="https://saurabhg.web.illinois.edu/">Saurabh Gupta*</a><sup>1</sup>,</span>
                             <span class="author-block">
@@ -68,7 +89,6 @@
 
                         <div class="is-size-5 publication-authors">
                             <span class="author-block"><sup>1</sup>University of Illinois Urbana-Champaign,</span>
-                            <span class="author-block"><sup>2</sup>Apple</span><br />
                             <span class="authors-block">&ast; Equal Advising</span>
                         </div>
 
@@ -98,7 +118,7 @@
               </span> -->
                                 <!-- Video Link. -->
                                 <span class="link-block">
-                                    <a href="https://drive.google.com/file/d/14MW96pLBEIfXKKFeC9xY_JiYirl7L22R/view"
+                                    <a href="https://www.youtube.com/watch?v=lCc1rHePEFQ"
                                         class="external-link button is-normal is-rounded is-dark">
                                         <span class="icon">
                                             <i class="fab fa-youtube"></i>
@@ -107,15 +127,15 @@
                                     </a>
                                 </span>
                                 <!-- Slide Link. -->
-                                <!-- <span class="link-block">
-                <a href=""
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-slideshare"></i>
-                  </span>
-                  <span>Slide</span>
-                </a>
-              </span> -->
+                                <span class="link-block">
+                                    <a href="https://drive.google.com/file/d/1i6xb-EU0OWbi9tQupQp8aP3RQ8c2OFVJ/view?usp=sharing"
+                                    class="external-link button is-normal is-rounded is-dark">
+                                    <span class="icon">
+                                        <i class="fab fa-slideshare"></i>
+                                    </span>
+                                    <span>Slide</span>
+                                    </a>
+                                </span>
                                 <!-- <span class="link-block">
                 <a href="" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -162,7 +182,7 @@
                     <h2 class="title is-3">Abstract</h2>
                     <div class="content has-text-justified">
                         <p>
-                            We present <b>PhysGen</b>, a novel image-to-video generation method that converts a single
+                            We present <span class="gradient-text">PhysGen</span>, a novel image-to-video generation method that converts a single
                             image and an input condition (e.g., force and torque applied to an object in the image) to
                             produce a realistic, physically plausible, and temporally consistent video.
                             Our key insight is to integrate model-based physical simulation with a data-driven video
@@ -178,7 +198,7 @@
                             controllable,
                             showcasing superior results over existing data-driven image-to-video generation works
                             through quantitative comparison and comprehensive user study.
-                            PhysGen's resulting videos can be used for various downstream applications, such as turning
+                            <span class="gradient-text">PhysGen</span>'s resulting videos can be used for various downstream applications, such as turning
                             an image into a realistic animation or allowing users to interact with the image and create
                             various dynamics.
                         </p>
@@ -186,50 +206,27 @@
                 </div>
             </div>
             <!--/ Abstract. -->
-        </div>
-    </section>
 
-
-    <section class="section">
-        <div class="container is-max-desktop">
-            <div class="columns is-centered has-text-centered">
-                <div class="column">
-                    <h2 class="title is-3">Overview</h2>
-                    <div class="content has-text-justified">
-                        <p>
-                            Our framework consists of three interleaved components: the perception module, the dynamics
-                            simulation module, and the rendering module.
-                            The perception module interprets the semantics, geometry, and physical parameters in the
-                            given image.
-                            The dynamics simulation module simulates the rigid-body motion and interactions of each
-                            instance in the scene, governed by Newton's Laws and physical constraints.
-                            The rendering module renders the final outcome,
-                            leveraging an off-the-shelf relighting model and diffusion-model-based video priors.
-                        </p>
-                        <center><img src="static/figs/method.png" alt="setting" width="100%" /></center>
-                    </div>
-
+            <div class="container is-max-desktop">
+                <div class="hero-body">
+                  <img src="static/figs/method.png" alt="teaser" width="100%" />
+                  <!-- <h2 class="subtitle has-text-centered">
+                   </h2> -->
                 </div>
             </div>
-        </div>
-    </section>
 
-
-
-    <section class="section">
-        <div class="container is-max-desktop">
+            <!-- Paper video. -->
             <div class="columns is-centered has-text-centered">
                 <div class="column">
-                    <!-- Paper video. -->
-                    <h2 class="title is-3">Results</h2>
+                    <h2 class="title is-3">Video</h2>
                     <div class="publication-video">
-                        <iframe src="https://drive.google.com/file/d/14MW96pLBEIfXKKFeC9xY_JiYirl7L22R/preview"
-                            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/lCc1rHePEFQ"
+                        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     </div>
-                    <!--/ Paper video. -->
-
                 </div>
             </div>
+            <!--/ Paper video. -->
+
         </div>
     </section>
 
