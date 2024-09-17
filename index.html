@@ -230,6 +230,7 @@
         </div>
     </section>
 
+    <br>
     <div class="columns is-centered has-text-centered">
         <h2 class="title is-3">Qualitative Comparison</h2>
     </div>
@@ -525,7 +526,107 @@
             </div>
 
       </div>
+
+    <br>
+    <div class="columns is-centered has-text-centered">
+        <h2 class="title is-3">Controllable Generation</h2>
     </div>
+
+    <div class="container">
+        <div id="controllable-names" style="margin: 0 auto;">
+            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;margin-bottom:0px;">
+            <tr style="padding:0px">
+                <td style="padding-left:1%;padding-right:1%;width:25%;text-align:center;vertical-align:middle">
+                <small><b><a >Input-1</a></b></small>
+                </td>
+                <td style="padding-right:1%;width:25%;text-align:center;vertical-align:middle">
+                <small><b><a>Generation-1</a></b></small>
+                </td>
+                <td style="padding-right:1%;width:25%;text-align:center;vertical-align:middle">
+                <small><b><a>Input-2</a></b></small>
+                </td>
+                <td style="padding-right:1%;width:25%;text-align:center;vertical-align:middle">
+                <small><b>Generation-2</b></small>
+                </td>
+            </tr>
+            </table>
+        </div>
+
+    <div id="controllable-carousel" class="carousel results-carousel" style="margin: 0 auto;"> 
+        <div class="item item-balls">
+            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;margin-top:1%;margin-bottom:1%;">
+              <tr style="padding:0px">
+                <td style="padding-left:1%;padding-right:1%;width:25%;vertical-align:middle">
+                    <image class="carousel-image" height="100%" src="./static/videos/controllable/stone_1.png" type="image/png">
+                    </image>
+                </td>
+                <td style="padding-right:1%;width:25%;vertical-align:middle">
+                    <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/controllable/stone_1.mp4" type="video/mp4">
+                    </video>
+                </td>
+                <td style="padding-right:1%;width:25%;vertical-align:middle">
+                    <image class="carousel-image" height="100%" src="./static/videos/controllable/stone_2.png" type="image/png"></image>
+                    </image>
+                </td>
+                <td style="padding-right:1%;width:25%;vertical-align:middle">
+                    <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/controllable/stone_2.mp4" type="video/mp4">
+                    </video>
+                </td>
+              </tr>
+            </table>
+        </div>
+
+        <div class="item item-balls">
+            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;margin-top:1%;margin-bottom:1%;">
+              <tr style="padding:0px">
+                <td style="padding-left:1%;padding-right:1%;width:25%;vertical-align:middle">
+                    <image class="carousel-image" height="100%" src="./static/videos/controllable/domino_1.png" type="image/png">
+                    </image>
+                </td>
+                <td style="padding-right:1%;width:25%;vertical-align:middle">
+                    <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/controllable/domino_1.mp4" type="video/mp4">
+                    </video>
+                </td>
+                <td style="padding-right:1%;width:25%;vertical-align:middle">
+                    <image class="carousel-image" height="100%" src="./static/videos/controllable/domino_2.png" type="image/png"></image>
+                    </image>
+                </td>
+                <td style="padding-right:1%;width:25%;vertical-align:middle">
+                    <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/controllable/domino_2.mp4" type="video/mp4">
+                    </video>
+                </td>
+              </tr>
+            </table>
+        </div>
+
+
+        <div class="item item-balls">
+            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;margin-top:1%;margin-bottom:1%;">
+              <tr style="padding:0px">
+                <td style="padding-left:1%;padding-right:1%;width:25%;vertical-align:middle">
+                    <image class="carousel-image" height="100%" src="./static/videos/controllable/pool_1.png" type="image/png">
+                    </image>
+                </td>
+                <td style="padding-right:1%;width:25%;vertical-align:middle">
+                    <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/controllable/pool_1.mp4" type="video/mp4">
+                    </video>
+                </td>
+                <td style="padding-right:1%;width:25%;vertical-align:middle">
+                    <image class="carousel-image" height="100%" src="./static/videos/controllable/pool_2.png" type="image/png"></image>
+                    </image>
+                </td>
+                <td style="padding-right:1%;width:25%;vertical-align:middle">
+                    <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/controllable/pool_2.mp4" type="video/mp4">
+                    </video>
+                </td>
+              </tr>
+            </table>
+        </div>
+
+        
+    </div>
+    </div>
+
     </section>
   
 
@@ -538,7 +639,7 @@
       booktitle={European Conference on Computer Vision (ECCV)},
       year={2024}
     }
-</code></pre>
+    </code></pre>
         </div>
     </section>
 
@@ -599,6 +700,13 @@
             });
 
         bulmaCarousel.attach('#comparisons-carousel', {
+            slidesToScroll: 1,
+            slidesToShow: 1,
+            loop: true,
+            infinite: true
+        });
+
+        bulmaCarousel.attach('#controllable-carousel', {
             slidesToScroll: 1,
             slidesToShow: 1,
             loop: true,
