@@ -803,92 +803,161 @@
                     </table>
                 </div>
 
-             </div>
-
-             <div id="comparisons-method-names" style="margin: 0 auto;">
-                <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;margin-bottom:0px;">
-                  <tr style="padding:0px">
-                      
-                      <td style="padding-right:1%;width:20%;text-align:center;vertical-align:middle">
-                          <small><b>Input</b></small>
-                      </td>
-                      <td style="padding-right:1%;width:20%;text-align:center;vertical-align:middle">
-                          <small><b>Generation-1</b></small>
-                      </td>
-                      <td style="padding-right:1%;width:20%;text-align:center;vertical-align:middle">
-                          <small><b>Condition-2</b></small>
-                      </td>
-                      <td style="padding-right:1%;width:20%;text-align:center;vertical-align:middle">
-                          <small><b>Generation-3</b></small>
-                      </td>
-                      <td style="padding-right:1%;width:20%;text-align:center;vertical-align:middle">
-                        <small><b>Generation-4</b></small>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-              
-              <div id="controllable-carousel" class="carousel results-carousel" style="margin: 0 auto;"> 
-              
-                    <div class="item item-pig_ball">
-                        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;margin-top:1%;margin-bottom:1%;">
-                            <tr style="padding:0px">
-                            
-                                <td style="padding-right:1%;width:20%;vertical-align:middle">
-                                    <image class="carousel-image" height="100%" src="./static/figs/imgs/pig_ball.png" type="image/png">
-                                    </image>
-                                </td>
-                                <td style="padding-right:1%;width:20%;vertical-align:middle">
-                                    <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/controllable/pig_ball/sample_19.mp4" type="video/mp4">
-                                    </video>
-                                </td> 
-                                <td style="padding-right:1%;width:20%;vertical-align:middle">
-                                    <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/controllable/pig_ball/sample_20.mp4" type="video/mp4">
-                                    </video>
-                                </td>
-                                <td style="padding-right:1%;width:20%;vertical-align:middle">
-                                    <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/controllable/pig_ball/sample_23.mp4" type="video/mp4">
-                                    </video>
-                                </td>
-                                <td style="padding-right:1%;width:20%;vertical-align:middle">
-                                    <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/controllable/pig_ball/sample_24.mp4" type="video/mp4">
-                                    </video>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-  
-                    <div class="item item-wall_toy">
-                        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;margin-top:1%;margin-bottom:1%;">
-                            <tr style="padding:0px">
-                            
-                                <td style="padding-right:1%;width:20%;vertical-align:middle">
-                                    <image class="carousel-image" height="100%" src="./static/figs/imgs/wall_toy.png" type="image/png">
-                                    </image>
-                                </td>
-                                <td style="padding-right:1%;width:20%;vertical-align:middle">
-                                    <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/controllable/wall_toy/sample_7.mp4" type="video/mp4">
-                                    </video>
-                                </td>
-                                <td style="padding-right:1%;width:20%;vertical-align:middle">
-                                    <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/controllable/wall_toy/sample_17.mp4" type="video/mp4">
-                                    </video>
-                                </td>
-                                <td style="padding-right:1%;width:20%;vertical-align:middle">
-                                    <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/controllable/wall_toy/sample_25.mp4" type="video/mp4">
-                                    </video>
-                                </td>
-                                <td style="padding-right:1%;width:20%;vertical-align:middle">
-                                    <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/controllable/wall_toy/sample_37.mp4" type="video/mp4">
-                                    </video>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-               </div>
-
+             </div> 
         </div>
       </div>
+    </section>
+
+
+    <section class="section"></section>
+        <div class="container is-max-desktop">
+            <!-- Abstract. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="columns is-centered has-text-centered">
+                    <h2 class="title is-3">Real-world Comparison</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="hero is-light is-small"></section>
+        <div class="hero-body">
+          <div class="container">
+            
+            <div id="comparisons-method-names" style="margin: 0 auto;">
+                <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;margin-bottom:0px;">
+                  <tr style="padding:0px">
+                    <tr style="padding:0px">
+                        <th style="text-align:center;vertical-align:middle" colspan="5">Generation (top) VS Groundtruth (bottom) Samples</th>
+                    </tr>
+                  </tr>
+                </table>
+            </div>
+
+            <div id="controllable-carousel" class="carousel results-carousel" style="margin: 0 auto;"> 
+                <div class="item item-pig_ball_compare"> 
+                    <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;margin-top:1%;margin-bottom:1%;">
+                        
+                        <!-- <tr style="padding:0px">
+                            <th style="text-align:center;vertical-align:middle" colspan="5">Generation Samples</th>
+                        </tr> -->
+
+                        <tr style="padding:0px">
+                            <td style="padding-right:1%;width:20%;vertical-align:middle">
+                                <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/gt_compare/pig_ball/gen/sample_19.mp4" type="video/mp4">
+                                </video>
+                            </td> 
+                            <td style="padding-right:1%;width:20%;vertical-align:middle">
+                                <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/gt_compare/pig_ball/gen/sample_20.mp4" type="video/mp4">
+                                </video>
+                            </td>
+                            <td style="padding-right:1%;width:20%;vertical-align:middle">
+                                <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/gt_compare/pig_ball/gen/sample_23.mp4" type="video/mp4">
+                                </video>
+                            </td>
+                            <td style="padding-right:1%;width:20%;vertical-align:middle">
+                                <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/gt_compare/pig_ball/gen/sample_24.mp4" type="video/mp4">
+                                </video>
+                            </td>
+                            <td style="padding-right:1%;width:20%;vertical-align:middle">
+                                <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/gt_compare/pig_ball/gen/sample_29.mp4" type="video/mp4">
+                                </video>
+                            </td>
+                        </tr>
+
+                        <!-- <tr style="padding:0px">
+                            <th style="text-align:center;vertical-align:middle" colspan="5">Groundtruth Samples</th>
+                        </tr> -->
+
+                        <tr style="padding:0px">
+                            <td style="padding-right:1%;width:20%;vertical-align:middle">
+                                <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/gt_compare/pig_ball/gt/2.mp4" type="video/mp4">
+                                </video>
+                            </td> 
+                            <td style="padding-right:1%;width:20%;vertical-align:middle">
+                                <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/gt_compare/pig_ball/gt/9.mp4" type="video/mp4">
+                                </video>
+                            </td>
+                            <td style="padding-right:1%;width:20%;vertical-align:middle">
+                                <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/gt_compare/pig_ball/gt/12.mp4" type="video/mp4">
+                                </video>
+                            </td>
+                            <td style="padding-right:1%;width:20%;vertical-align:middle">
+                                <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/gt_compare/pig_ball/gt/23.mp4" type="video/mp4">
+                                </video>
+                            </td>
+                            <td style="padding-right:1%;width:20%;vertical-align:middle">
+                                <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/gt_compare/pig_ball/gt/47.mp4" type="video/mp4">
+                                </video>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="item item-wall_toy_compare"> 
+                    <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;margin-top:1%;margin-bottom:1%;">
+                        
+                        <tr style="padding:0px">
+                            <th style="text-align:center;vertical-align:middle"colspan="5">Generation Samples</th>
+                        </tr>
+
+                        <tr style="padding:0px">
+                            <td style="padding-right:1%;width:20%;vertical-align:middle">
+                                <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/gt_compare/wall_toy/gen/sample_7.mp4" type="video/mp4">
+                                </video>
+                            </td> 
+                            <td style="padding-right:1%;width:20%;vertical-align:middle">
+                                <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/gt_compare/wall_toy/gen/sample_25.mp4" type="video/mp4">
+                                </video>
+                            </td>
+                            <td style="padding-right:1%;width:20%;vertical-align:middle">
+                                <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/gt_compare/wall_toy/gen/sample_2.mp4" type="video/mp4">
+                                </video>
+                            </td>
+                            <td style="padding-right:1%;width:20%;vertical-align:middle">
+                                <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/gt_compare/wall_toy/gen/sample_17.mp4" type="video/mp4">
+                                </video>
+                            </td>
+                            <td style="padding-right:1%;width:20%;vertical-align:middle">
+                                <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/gt_compare/wall_toy/gen/sample_37.mp4" type="video/mp4">
+                                </video>
+                            </td>
+                        </tr>
+
+                        <tr style="padding:0px">
+                            <th style="text-align:center;vertical-align:middle"colspan="5">Groundtruth Samples</th>
+                        </tr>
+
+                        <tr style="padding:0px">
+                            <td style="padding-right:1%;width:20%;vertical-align:middle">
+                                <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/gt_compare/wall_toy/gt/29.mp4" type="video/mp4">
+                                </video>
+                            </td> 
+                            <td style="padding-right:1%;width:20%;vertical-align:middle">
+                                <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/gt_compare/wall_toy/gt/14.mp4" type="video/mp4">
+                                </video>
+                            </td>
+                            <td style="padding-right:1%;width:20%;vertical-align:middle">
+                                <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/gt_compare/wall_toy/gt/30.mp4" type="video/mp4">
+                                </video>
+                            </td>
+                            <td style="padding-right:1%;width:20%;vertical-align:middle">
+                                <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/gt_compare/wall_toy/gt/40.mp4" type="video/mp4">
+                                </video>
+                            </td>
+                            <td style="padding-right:1%;width:20%;vertical-align:middle">
+                                <video class="carousel-video" controls muted loop playsinline height="100%" src="./static/videos/gt_compare/wall_toy/gt/4.mp4" type="video/mp4">
+                                </video>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+
+          </div>
+        </div>
     </section>
             
 
