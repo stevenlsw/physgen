@@ -21,11 +21,12 @@
 </p>
 
   <p align="center">
-    <a href='https://drive.google.com/file/d/1JPtu11nhonYOydFl2Btf_y_n9zVT5QPP/view'>
+    <a href='https://shaoweiliu.web.illinois.edu/eccv2024_physgen_arxiv.pdf'>
       <img src='https://img.shields.io/badge/Paper-PDF-green?style=flat&logo=arXiv&logoColor=green' alt='Paper PDF'>
     </a>
     <a href='https://stevenlsw.github.io/physgen/' style='padding-left: 0.5rem;'>
       <img src='https://img.shields.io/badge/Project-Page-blue?style=flat&logo=Google%20chrome&logoColor=blue' alt='Project Page'>
+    <a href='https://colab.research.google.com/drive/1imGIms3Y4RRtddA6IuxZ9bkP7N2gVVC_' style='padding-left: 0.5rem;'><img src='https://colab.research.google.com/assets/colab-badge.svg' alt='Google Colab'></a>
     <a href='https://youtu.be/lCc1rHePEFQ' style='padding-left: 0.5rem;'>
       <img src='https://img.shields.io/badge/Youtube-Video-red?style=flat&logo=youtube&logoColor=red' alt='Youtube Video'>
     </a>
@@ -42,6 +43,7 @@ This repository contains the pytorch implementation for the paper [PhysGen: Rigi
 ## 📄 Table of Contents
 
 - [Installation](#installation)
+- [Colab notebook](#colab-notebook)
 - [Quick Demo](#quick-demo)
 - [Perception](#perception)
 - [Simulation](#simulation)
@@ -63,7 +65,13 @@ This repository contains the pytorch implementation for the paper [PhysGen: Rigi
     pip install -r requirements.txt
     ```
 
+## Colab notebook
+Run our [Colab notebook](https://colab.research.google.com/drive/1imGIms3Y4RRtddA6IuxZ9bkP7N2gVVC_) for quick start! 
+
+
+
 ## Quick Demo 
+
 - Run image space dynamics simulation in just **3** seconds **without GPU and any displace device and additional setup** required!
     ```Shell
     export PYTHONPATH=$(pwd)
@@ -72,46 +80,18 @@ This repository contains the pytorch implementation for the paper [PhysGen: Rigi
     ```
 - The output video should be saved in `outputs/${name}/composite.mp4`. Try set `name` to be `domino`, `balls`, `pig_ball` and `car` for other scenes exploration. The example outputs are shown below:
 
-  <table>
-    <tr>
-      <td style="text-align:center;width: 33%"><b>Input Image</b></td>
-      <td style="text-align:center;width: 33%"><b>Simulation</b></td>
-      <td style="text-align:center;width: 33%"><b>Output Video</b></td>
-    </tr>
-    <tr>
-      <td><img src="data/pool/original.png" alt="Pool Original Image" width="200"></td>
-      <td><img src="assets/pool_sim.gif" alt="Pool Simulation GIF" width="200"></td>
-      <td><img src="assets/pool_composite.gif" alt="Pool Composite GIF" width="200"></td>
-    </tr>
-    <tr>
-      <td><img src="data/domino/original.png" alt="Domino Original Image" width="200"></td>
-      <td><img src="assets/domino_sim.gif" alt="Domino Simulation GIF" width="200"></td>
-      <td><img src="assets/domino_composite.gif" alt="Domino Composite GIF" width="200"></td>
-    </tr>
-  </table>
-
+  | **Input Image** | **Simulation** | **Output Video** |
+  |:---------------:|:--------------:|:----------------:|
+  | <img src="data/pool/original.png" alt="Pool Original Image" width="200"> | <img src="assets/pool_sim.gif" alt="Pool Simulation GIF" width="200"> | <img src="assets/pool_composite.gif" alt="Pool Composite GIF" width="200"> |
+  | <img src="data/domino/original.png" alt="Domino Original Image" width="200"> | <img src="assets/domino_sim.gif" alt="Domino Simulation GIF" width="200"> | <img src="assets/domino_composite.gif" alt="Domino Composite GIF" width="200"> |
 
 
 ## Perception
 
-<table>
-  <tr>
-    <th style="width: 16%">Input</th>
-    <th style="width: 16%">Segmentation</th>
-    <th style="width: 16%">Normal</th>
-    <th style="width: 16%">Albedo</th>
-    <th style="width: 16%">Shading</th>
-    <th style="width: 16%">Inpainting</th>
-  </tr>
-  <tr>
-    <td><img src="data/pig_ball/original.png" alt="input" width="100"></td>
-    <td><img src="data/pig_ball/vis.png" alt="segmentation" width="100"></td>
-    <td><img src="data/pig_ball/intermediate/normal_vis.png" alt="normal" width="100"></td>
-    <td><img src="data/pig_ball/intermediate/albedo_vis.png" alt="albedo" width="100"></td>
-    <td><img src="data/pig_ball/intermediate/shading_vis.png" alt="shading" width="100"></td>
-    <td><img src="data/pig_ball/inpaint.png" alt="inpainting" width="100"></td>
-  </tr>
-</table>
+| **Input** | **Segmentation** | **Normal** | **Albedo** | **Shading** | **Inpainting** |
+|:---------:|:----------------:|:----------:|:----------:|:-----------:|:--------------:|
+| <img src="data/pig_ball/original.png" alt="input" width="100"/> | <img src="data/pig_ball/vis.png" alt="segmentation" width="100"/> | <img src="data/pig_ball/intermediate/normal_vis.png" alt="normal" width="100"/> | <img src="data/pig_ball/intermediate/albedo_vis.png" alt="albedo" width="100"/> | <img src="data/pig_ball/intermediate/shading_vis.png" alt="shading" width="100"/> | <img src="data/pig_ball/inpaint.png" alt="inpainting" width="100"/> |
+
 
 
 ## Simulation
@@ -162,18 +142,10 @@ This repository contains the pytorch implementation for the paper [PhysGen: Rigi
   ```
 - The output `relight.mp4` and `relight.pt` is the relighted video and tensor. 
 - Compare between composite video and relighted video:
-  <table>
-    <tr>
-      <td style="text-align:center;width: 33%"><b>Input Image</b></td>
-      <td style="text-align:center;width: 33%"><b>Composite Video</b></td>
-      <td style="text-align:center;width: 33%"><b>Relight Video</b></td>
-    </tr>
-    <tr>
-      <td style="text-align:center;"><img src="data/pig_ball/original.png" alt="Original Input Image" width="200"></td>
-      <td style="text-align:center;"><img src="assets/pig_ball_composite.gif" alt="Pig Ball Composite GIF" width="200"></td>
-      <td style="text-align:center;"><img src="assets/pig_ball_relight.gif" alt="Pig Ball Relight GIF" width="200"></td>
-    </tr>
-  </table>
+  | **Input Image** | **Composite Video** | **Relight Video** |
+  |:---------------:|:-------------------:|:-----------------:|
+  | <img src="data/pig_ball/original.png" alt="Original Input Image" width="200"/> | <img src="assets/pig_ball_composite.gif" alt="Pig Ball Composite GIF" width="200"/> | <img src="assets/pig_ball_relight.gif" alt="Pig Ball Relight GIF" width="200"/> |
+
 
 
 ### Video Diffusion Rendering
@@ -182,7 +154,7 @@ This repository contains the pytorch implementation for the paper [PhysGen: Rigi
   ```Shell
   # install git-lfs beforehand
   mkdir -p diffusion/SEINE/pretrained
-  git clone https://huggingface.co/CompVis/stable-diffusion-v1-4 diffusion/SEINE/pretrained
+  git clone https://huggingface.co/CompVis/stable-diffusion-v1-4 diffusion/SEINE/pretrained/stable-diffusion-v1-4
   wget -P diffusion/SEINE/pretrained https://huggingface.co/Vchitect/SEINE/resolve/main/seine.pt
   ```
 
@@ -206,18 +178,10 @@ This repository contains the pytorch implementation for the paper [PhysGen: Rigi
 - The output `final_video.mp4` is the rendered video.
 
 - Compare between relight video and diffuson rendered video:
-    <table>
-      <tr>
-        <td style="text-align:center;width: 33%"><b>Input Image</b></td>
-        <td style="text-align:center;width: 33%"><b>Composite Video</b></td>
-        <td style="text-align:center;width: 33%"><b>Relight Video</b></td>
-      </tr>
-      <tr>
-        <td style="text-align:center;"><img src="data/car/original.png" alt="Original Input Image" width="200"></td>
-        <td style="text-align:center;"><img src="assets/car_relight.gif" alt="Pig Ball Composite GIF" width="200"></td>
-        <td style="text-align:center;"><img src="assets/car_final.gif" alt="Pig Ball Relight GIF" width="200"></td>
-      </tr>
-    </table>
+  | **Input Image**                        | **Relight Video**                           | **Final Video**                             |
+  |:--------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|
+  | <img src="data/car/original.png" alt="Original Input Image" width="200"/> | <img src="assets/car_relight.gif" alt="Car Composite GIF" width="200"/> | <img src="assets/car_final.gif" alt="Car Relight GIF" width="200"/> |
+
 
 
 ## All-in-One command
@@ -232,11 +196,11 @@ bash scripts/run_demo.sh ${name}
 If you find our work useful in your research, please cite:
 
 ```BiBTeX
-@inproceedings{liu2023contactgen,
-  title={ContactGen: Generative Contact Modeling for Grasp Generation},
-  author={Liu, Shaowei and Zhou, Yang and Yang, Jimei and Gupta, Saurabh and Wang, Shenlong},
-  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
-  year={2023}
+@inproceedings{liu2024physgen,
+  title={PhysGen: Rigid-Body Physics-Grounded Image-to-Video Generation},
+  author={Liu, Shaowei and Ren, Zhongzheng and Gupta, Saurabh and Wang, Shenlong},
+  booktitle={European Conference on Computer Vision ECCV},
+  year={2024}
 }
 ```
 
