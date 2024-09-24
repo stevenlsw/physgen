@@ -1,0 +1,60 @@
+# general setting
+cat: domino
+# simulation setting
+animation_frames: 16
+size: [512, 512]
+num_steps: 160
+# enable for simulation visualization
+display: false
+save_snapshot: false
+gravity: 980
+init_velocity:
+  6: [-80, 0]
+init_acc:
+# perception setting
+edge_list: [[[0, 457], [512, 457]]]
+obj_info:
+  1:
+    label: white cuboid
+    mass:
+    density: 2.5
+    friction: 0.5
+    elasticity: 0.01
+    primitive: polygon
+  2:
+    label: white cuboid
+    mass:
+    density: 2.5
+    friction: 0.5
+    elasticity: 0.01
+    primitive: polygon
+  3:
+    label: white cuboid
+    mass:
+    density: 2.5
+    friction: 0.5
+    elasticity: 0.01
+    primitive: polygon
+  4:
+    label: white cuboid
+    mass:
+    density: 2.5
+    friction: 0.5
+    elasticity: 0.01
+    primitive: polygon
+  5:
+    label: white cuboid
+    mass:
+    density: 2.5
+    friction: 0.5
+    elasticity: 0.01
+    primitive: polygon
+  6:
+    label: white cuboid
+    mass:
+    density: 2.5
+    friction: 0.5
+    elasticity: 0.01
+    primitive: polygon
+# diffusion setting (optional)
+denoise_strength: 0.45

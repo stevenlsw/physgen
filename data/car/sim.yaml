@@ -1,0 +1,27 @@
+# general setting
+cat: car
+# simulation setting
+animation_frames: 16
+size: [512, 512]
+num_steps: 100
+# enable for simulation visualization
+display: false
+save_snapshot: false
+gravity: 980
+ground_friction: 0.9
+ground_elasticity: 1.0
+init_velocity:
+  1: [-400, 0]
+init_acc:
+# perception setting
+edge_list: [[[0, 303], [512, 303]]]
+obj_info:
+  1:
+    label: toy car
+    mass:
+    density: 0.001
+    friction: 0.4
+    elasticity: 0.1
+    primitive: polygon
+# diffusion setting (optional)
+denoise_strength: 0.65

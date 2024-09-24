@@ -1,0 +1,32 @@
+# general setting
+cat: pig_ball
+# simulation setting
+animation_frames: 16
+size: [512, 512]
+num_steps: 220
+# enable for simulation visualization
+display: false
+save_snapshot: false
+gravity: 980
+init_velocity: {}
+init_acc:
+  3: [-100, 0]
+# perception setting
+edge_list: [[[409, 154], [512, 154]], [[182, 186], [512, 186]], [[0, 512], [512, 512]]]
+obj_info:
+  1:
+    label: ball
+    mass: 100
+    density:
+    friction: 0.7
+    elasticity: 0.8
+    primitive: circle
+  3:
+    label: toy
+    mass:
+    density: 1.0
+    friction: 0.5
+    elasticity: 0.3
+    primitive: polygon
+# diffusion setting (optional)
+denoise_strength: 0.3

@@ -1,0 +1,133 @@
+# general setting
+cat: pool
+# simulation setting
+animation_frames: 16
+size: [512, 512]
+num_steps: 100
+# enable for simulation visualization
+display: false
+save_snapshot: false
+gravity: 0
+init_velocity:
+  1: [-100, 0]
+init_acc:
+  1: [-5882.35, 0.0]
+
+# perception setting
+edge_list: [[[1, 1], [1, 511]], [[1, 511], [511, 511]], [[511, 511], [511, 1]], [
+    [511, 1], [1, 1]]]
+obj_info:
+  1:
+    label: billiard
+    mass: 170
+    density:
+    friction: 0.3
+    elasticity: 0.7
+    primitive: circle
+  10:
+    label: billiard
+    mass: 170
+    density:
+    friction: 0.3
+    elasticity: 0.7
+    primitive: circle
+  11:
+    label: billiard
+    mass: 170
+    density:
+    friction: 0.3
+    elasticity: 0.7
+    primitive: circle
+  12:
+    label: billiard
+    mass: 170
+    density:
+    friction: 0.3
+    elasticity: 0.7
+    primitive: circle
+  13:
+    label: billiard
+    mass: 170
+    density:
+    friction: 0.3
+    elasticity: 0.7
+    primitive: circle
+  14:
+    label: billiard
+    mass: 170
+    density:
+    friction: 0.3
+    elasticity: 0.7
+    primitive: circle
+  15:
+    label: billiard
+    mass: 170
+    density:
+    friction: 0.3
+    elasticity: 0.7
+    primitive: circle
+  16:
+    label: billiard
+    mass: 170
+    density:
+    friction: 0.3
+    elasticity: 0.7
+    primitive: circle
+  2:
+    label: billiard
+    mass: 170
+    density:
+    friction: 0.3
+    elasticity: 0.7
+    primitive: circle
+  3:
+    label: billiard
+    mass: 170
+    density:
+    friction: 0.3
+    elasticity: 0.7
+    primitive: circle
+  4:
+    label: billiard
+    mass: 170
+    density:
+    friction: 0.3
+    elasticity: 0.7
+    primitive: circle
+  5:
+    label: billiard
+    mass: 170
+    density:
+    friction: 0.3
+    elasticity: 0.7
+    primitive: circle
+  6:
+    label: billiard
+    mass: 170
+    density:
+    friction: 0.3
+    elasticity: 0.7
+    primitive: circle
+  7:
+    label: billiard
+    mass: 170
+    density:
+    friction: 0.3
+    elasticity: 0.7
+    primitive: circle
+  8:
+    label: billiard
+    mass: 170
+    density:
+    friction: 0.3
+    elasticity: 0.7
+    primitive: circle
+  9:
+    label: billiard
+    mass: 170
+    density:
+    friction: 0.3
+    elasticity: 0.7
+    primitive: circle
+# diffusion setting (optional)
+denoise_strength: 0.2

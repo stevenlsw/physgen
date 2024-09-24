@@ -1,0 +1,3 @@
+[submodule "diffusion/SEINE"]
+	path = diffusion/SEINE
+	url = https://github.com/Vchitect/SEINE.git

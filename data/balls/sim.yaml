@@ -1,0 +1,61 @@
+# general setting
+cat: balls
+# simulation setting
+animation_frames: 16
+size: [512, 512]
+num_steps: 200
+# enable for simulation visualization
+display: false
+save_snapshot: false
+gravity: 0
+init_velocity:
+  6: [40, -150]
+init_acc:
+# perception setting
+edge_list: [[[1, 1], [1, 511]], [[1, 511], [511, 511]], [[511, 511], [511, 1]], [
+    [511, 1], [1, 1]]]
+obj_info:
+  1:
+    label: puck
+    mass: 1900
+    density:
+    friction: 0.1
+    elasticity: 0.05
+    primitive: circle
+  2:
+    label: puck
+    mass: 1900
+    density:
+    friction: 0.1
+    elasticity: 0.05
+    primitive: circle
+  3:
+    label: puck
+    mass: 1900
+    density:
+    friction: 0.1
+    elasticity: 0.05
+    primitive: circle
+  4:
+    label: puck
+    mass: 1900
+    density:
+    friction: 0.1
+    elasticity: 0.05
+    primitive: circle
+  5:
+    label: puck
+    mass: 1900
+    density:
+    friction: 0.1
+    elasticity: 0.05
+    primitive: circle
+  6:
+    label: puck
+    mass: 1900
+    density:
+    friction: 0.1
+    elasticity: 0.05
+    primitive: circle
+# diffusion setting (optional)
+denoise_strength: 0.5
