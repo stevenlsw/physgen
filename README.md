@@ -17,7 +17,7 @@
   </p>
 
 <p align="center"> 
-<video autoplay controls loop src="assets/demo.mp4" type="video/mp4"></video>
+<img src="assets/demo.gif" alt="Demo GIF" />
 </p>
 
   <p align="center">
@@ -74,21 +74,22 @@ This repository contains the pytorch implementation for the paper [PhysGen: Rigi
 
   <table>
     <tr>
-       <td style="text-align:center;width: 33%" colspan="1"><b>Input Image</b></td>
-       <td style="text-align:center;width: 33%" colspan="1"><b>Simulation</b></td>
-       <td style="text-align:center;width: 33%" colspan="1"><b>Output Video</b></td>
+      <td style="text-align:center;width: 33%"><b>Input Image</b></td>
+      <td style="text-align:center;width: 33%"><b>Simulation</b></td>
+      <td style="text-align:center;width: 33%"><b>Output Video</b></td>
+    </tr>
     <tr>
-      <td><img src="data/pool/original.png"></td>
-      <td><video autoplay controls loop src="assets/pool_sim.mp4" type="video/mp4"></video></td>
-      <td><video autoplay controls loop src="assets/pool_composite.mp4" type="video/mp4"></video></td>
+      <td><img src="data/pool/original.png" alt="Pool Original Image" width="200"></td>
+      <td><img src="assets/pool_sim.gif" alt="Pool Simulation GIF" width="200"></td>
+      <td><img src="assets/pool_composite.gif" alt="Pool Composite GIF" width="200"></td>
     </tr>
-     <tr>
-      <td><img src="data/domino/original.png"></td>
-      <td><video autoplay controls loop src="assets/domino_sim.mp4" type="video/mp4"></video></td>
-      <td><video autoplay controls loop src="assets/domino_composite.mp4" type="video/mp4"></video></td>
+    <tr>
+      <td><img src="data/domino/original.png" alt="Domino Original Image" width="200"></td>
+      <td><img src="assets/domino_sim.gif" alt="Domino Simulation GIF" width="200"></td>
+      <td><img src="assets/domino_composite.gif" alt="Domino Composite GIF" width="200"></td>
     </tr>
-  
   </table>
+
 
 
 ## Perception
@@ -161,17 +162,19 @@ This repository contains the pytorch implementation for the paper [PhysGen: Rigi
   ```
 - The output `relight.mp4` and `relight.pt` is the relighted video and tensor. 
 - Compare between composite video and relighted video:
-   <table>
+  <table>
     <tr>
-       <td style="text-align:center;width: 33%" colspan="1"><b>Input Image</b></td>
-       <td style="text-align:center;width: 33%" colspan="1"><b>Composite Video</b></td>
-       <td style="text-align:center;width: 33%" colspan="1"><b>Relight Video</b></td>
+      <td style="text-align:center;width: 33%"><b>Input Image</b></td>
+      <td style="text-align:center;width: 33%"><b>Composite Video</b></td>
+      <td style="text-align:center;width: 33%"><b>Relight Video</b></td>
+    </tr>
     <tr>
-      <td><img src="data/pig_ball/original.png"></td>
-      <td><video autoplay controls loop src="assets/pig_ball_composite.mp4" type="video/mp4"></video></td>
-      <td><video autoplay controls loop src="assets/pig_ball_relight.mp4" type="video/mp4"></video></td>
+      <td style="text-align:center;"><img src="data/pig_ball/original.png" alt="Original Input Image" width="200"></td>
+      <td style="text-align:center;"><img src="assets/pig_ball_composite.gif" alt="Pig Ball Composite GIF" width="200"></td>
+      <td style="text-align:center;"><img src="assets/pig_ball_relight.gif" alt="Pig Ball Relight GIF" width="200"></td>
     </tr>
   </table>
+
 
 ### Video Diffusion Rendering
 - Download the [SEINE](https://github.com/Vchitect/SEINE/) model follow [instruction](https://github.com/Vchitect/SEINE/tree/main?tab=readme-ov-file#download-our-model-and-t2i-base-model)
@@ -203,17 +206,19 @@ This repository contains the pytorch implementation for the paper [PhysGen: Rigi
 - The output `final_video.mp4` is the rendered video.
 
 - Compare between relight video and diffuson rendered video:
-   <table>
-    <tr>
-       <td style="text-align:center;width: 33%" colspan="1"><b>Input Image</b></td>
-       <td style="text-align:center;width: 33%" colspan="1"><b>Relight Video</b></td>
-       <td style="text-align:center;width: 33%" colspan="1"><b>Final Video</b></td>
-    <tr>
-      <td><img src="data/car/original.png"></td>
-      <td><video autoplay controls loop src="assets/car_relight.mp4" type="video/mp4"></video></td>
-      <td><video autoplay controls loop src="assets/car_final.mp4" type="video/mp4"></video></td>
-    </tr>
-  </table>
+    <table>
+      <tr>
+        <td style="text-align:center;width: 33%"><b>Input Image</b></td>
+        <td style="text-align:center;width: 33%"><b>Composite Video</b></td>
+        <td style="text-align:center;width: 33%"><b>Relight Video</b></td>
+      </tr>
+      <tr>
+        <td style="text-align:center;"><img src="data/car/original.png" alt="Original Input Image" width="200"></td>
+        <td style="text-align:center;"><img src="assets/car_relight.gif" alt="Pig Ball Composite GIF" width="200"></td>
+        <td style="text-align:center;"><img src="assets/car_final.gif" alt="Pig Ball Relight GIF" width="200"></td>
+      </tr>
+    </table>
+
 
 ## All-in-One command
 We integrate the simulation, relighting and video diffusion rendering in one script. Please follow the [Video Diffusion Rendering](#video-diffusion-rendering) to download the SEINE model first.
