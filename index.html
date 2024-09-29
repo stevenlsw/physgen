@@ -34,13 +34,14 @@
     <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
     <link rel="stylesheet" href="./static/css/index.css">
-    <link rel="icon" href="./static/images/favicon.svg">
-
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script defer src="./static/js/fontawesome.all.min.js"></script>
     <script src="./static/js/bulma-carousel.min.js"></script>
     <script src="./static/js/bulma-slider.min.js"></script>
-    <script src="./static/js/index.js"></script>
+
+    <!-- Matter.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
 
     <style>
         /* Gradient text style */
@@ -62,6 +63,70 @@
             color: transparent;
             background-clip: text;
         }
+
+        .title.is-3.publication-title {
+            font-size: 36px;
+            font-weight: bold;
+            background-image: linear-gradient(to right, #b59f00, green, blue); /* Darker yellow */
+            -webkit-background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-clip: text;
+        }
+
+
+        .center-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100vh; /* Optional: centers the section vertically on the page */
+            margin: 0px 0;
+        }
+
+        #canvas-container {
+            width: 512px;
+            height: 512px;
+            overflow: hidden;
+            position: relative;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            margin-top: -5px;
+            margin-bottom: 10px;
+            display: flex;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+
+        #img-controls {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .scriptButton {
+            cursor: pointer;
+            width: 164px;
+            height: auto;
+            margin: 10px;
+        }
+
+        #reloadButton {
+            padding: 10px 10px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+
     </style>
 
 </head>
@@ -247,13 +312,125 @@
 
     <br>
 
+    
+    <section class="center-section">
+    
+        <div class="columns is-centered has-text-centered">
+            <div class="columns is-centered has-text-centered">
+                <h2 class="title is-3 publication-title">Web Demo</h2>
+            </div>
+        </div>
+
+        <div class="content has-text-justified">
+            <p>  
+               <h2 class="title is-5" style="text-align:center;vertical-align:middle">Drag the object on the image to apply a force and see how the scene moves!</h2>
+            </p>
+            <p style="font-size: 2; text-align: center;">
+                (The demo doesn’t include the generative rendering in order to make it real-time and web-interactive.)
+            </p>
+        </div>
+        
+        <div id="canvas-container"></div>
+        
+        <div id="img-controls">
+            <button id="reloadButton">Reset Current Scene</button>
+        </div>
+        
+        <div>
+            <h2 class="title is-5" style="text-align:center;vertical-align:middle">Try different scenes by clicking on the image below:</h2>
+        </div>
+        
+        <div id="img-controls">
+            <img src="assets/balls/original.png" id="load_balls" class="scriptButton" alt="Load Scene 1">
+            <img src="assets/domino/original.png" id="load_domino" class="scriptButton" alt="Load Scene 2">
+            <img src="assets/pig_ball/original.png" id="load_pig_ball" class="scriptButton" alt="Load Scene 3">
+        </div>
+
+    </section>
+    
+
+
+    <script src="scripts/balls.js"></script>
+    <script>
+        console.log("script is loading...");
+
+        let currentExample = null;
+
+        // Function to dynamically load a new script
+        function loadScript(scriptName, callback) {
+            var oldScript = document.getElementById('dynamicScript');
+            if (oldScript) {
+                oldScript.remove(); // Remove the old script
+            }
+            var newScript = document.createElement('script');
+            newScript.src = scriptName;
+            newScript.id = 'dynamicScript';
+            newScript.onload = callback;
+            document.head.appendChild(newScript);
+        }
+
+        function clearScene() {
+            if (currentExample) {
+                console.log("Clearing scene...");
+                Matter.Composite.clear(currentExample.engine.world, false);
+                Matter.Render.stop(currentExample.render);
+                Matter.Runner.stop(currentExample.runner);
+                currentExample.render.canvas.remove();
+                currentExample = null;
+            }
+        }
+
+        function startExample() {
+            console.log("Starting new example...");
+            clearScene();
+            if (typeof Example !== 'undefined' && Example.physgen) {
+                const container = document.getElementById('canvas-container');
+                currentExample = Example.physgen(); // Start the example
+                container.appendChild(currentExample.canvas); // Append canvas to the container
+                console.log("Example started successfully.");
+            } else {
+                console.error('Example.physgen is not defined. Make sure js is loaded correctly.');
+            }
+        }
+
+        // Load the initial example on window load
+        window.addEventListener('load', () => {
+            console.log("Window loaded. Initializing example...");
+            startExample();
+
+            document.getElementById('reloadButton').addEventListener('click', () => {
+                startExample();
+            });
+
+            document.getElementById('load_balls').addEventListener('click', () => {
+                currentScript = 'scripts/balls.js'; 
+                loadScript(currentScript, startExample);
+            });
+
+            document.getElementById('load_balls').addEventListener('click', () => {
+                currentScript = 'scripts/balls.js'; 
+                loadScript(currentScript, startExample);
+            });
+
+            document.getElementById('load_domino').addEventListener('click', () => {
+                currentScript = 'scripts/domino.js'; 
+                loadScript(currentScript, startExample);
+            });
+
+             // Add event listener to the image button for the second script
+             document.getElementById('load_pig_ball').addEventListener('click', function() {
+                console.log('Load new script image clicked.');
+                currentScript = 'scripts/pig_ball.js'; // Switch to the second script
+                loadScript(currentScript, startExample); // Load the second script
+            });
+        });
+    </script>
+
     <section class="section">
         <div class="container is-max-desktop">
             <!-- Abstract. -->
             <div class="columns is-centered has-text-centered">
-                <div class="columns is-centered has-text-centered">
                     <h2 class="title is-3">Qualitative Comparison</h2>
-                </div>
             </div>
         </div>
     </section>
@@ -712,9 +889,7 @@
         <div class="container is-max-desktop">
             <!-- Abstract. -->
             <div class="columns is-centered has-text-centered">
-                <div class="columns is-centered has-text-centered">
                     <h2 class="title is-3">Controllable Generation</h2>
-                </div>
             </div>
         </div>
     </section>
@@ -828,9 +1003,7 @@
         <div class="container is-max-desktop">
             <!-- Abstract. -->
             <div class="columns is-centered has-text-centered">
-                <div class="columns is-centered has-text-centered">
-                    <h2 class="title is-3">Real-world Comparison</h2>
-                </div>
+                <h2 class="title is-3">Real-world Comparison</h2>
             </div>
         </div>
     </section>
@@ -844,7 +1017,7 @@
                 <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;margin-bottom:0px;">
                   <tr style="padding:0px">
                     <tr style="padding:0px">
-                        <th style="text-align:center;vertical-align:middle" colspan="5">Generation (top) VS Groundtruth (bottom) Samples</th>
+                        <h2 class="title is-4" style="text-align:center;vertical-align:middle">Generation (top) VS Groundtruth (bottom) Samples</h2>
                     </tr>
                   </tr>
                 </table>
@@ -1019,7 +1192,7 @@
         </div>
     </footer>
 
-    <script src="lazysizes.min.js" async=""></script>
+    <script src="static/js/lazysizes.min.js" async=""></script>
     <script>
         bulmaCarousel.attach('#comparisons-carousel', {
             slidesToScroll: 1,
