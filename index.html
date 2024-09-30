@@ -82,12 +82,13 @@
             align-items: center;
             text-align: center;
             height: 100vh; /* Optional: centers the section vertically on the page */
-            margin: 0px 0;
+            margin: 0;
         }
 
         #canvas-container {
-            width: 512px;
-            height: 512px;
+            width: 100%;  
+            max-width: 512px; 
+            height: 100%;
             overflow: hidden;
             position: relative;
             align-items: center;
@@ -101,8 +102,8 @@
         canvas {
             width: 100%;
             height: 100%;
+            background-color: #fff;
         }
-
 
         #img-controls {
             display: flex;
@@ -111,6 +112,7 @@
             justify-content: center;
             gap: 10px;
             margin-bottom: 20px;
+            flex-wrap: wrap;  /* Allow buttons to wrap on small screens */
         }
 
         .scriptButton {
@@ -330,7 +332,8 @@
             </p>
         </div>
         
-        <div id="canvas-container"></div>
+        <div id="canvas-container">
+        </div>
         
         <div id="img-controls">
             <button id="reloadButton">Reset Current Scene</button>
@@ -347,8 +350,6 @@
         </div>
 
     </section>
-    
-
 
     <script src="scripts/balls.js"></script>
     <script>
