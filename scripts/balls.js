@@ -92,7 +92,10 @@ Example.physgen = function () {
 
     Composite.add(world, [
         Bodies.circle(133, 480, 45, {
-            isStatic: true,
+            density: density,
+            frictionAir: 0.0006,
+            restitution: restitution,
+            friction: friction,
             render: {
                 sprite: {
                     texture: 'assets/balls/3.png'
