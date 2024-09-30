@@ -83,7 +83,7 @@ Example.physgen = function () {
     ]);
 
     Composite.add(world, [
-        Bodies.rectangle(445, 165, 130, 34, {
+        Bodies.rectangle(450, 165, 130, 34, {
                 isStatic: true,
                 render: {
                     sprite: {
