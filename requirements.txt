@@ -23,6 +23,7 @@ tensorboard==2.15.1
 timm==0.9.10
 rotary-embedding-torch==0.3.5
 natsort==8.4.0
-
+openai==0.28
+ruamel.yaml
 
 

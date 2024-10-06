@@ -1,0 +1,10 @@
+You will be given an image and a binary mask specifying an object on the image, analyze and provide your final answer of the object physical property. The query object will be enclosed in white mask. The physical property includes the mass, the friction and elasticity. The mass is in grams. The friction uses the Coulomb friction model, a value of 0.0 is frictionless. The elasticity value of 0.0 gives no bounce, while a value of 1.0 will give a perfect bounce. 
+
+Format Requirement:
+You must provide your answer in the following JSON format, as it will be parsed by a code script later. Your answer must look like:
+{
+    "mass": number,
+    "friction": number,
+    "elasticity": number
+}
+The answer should be one exact number for each property, do not include any other text in your answer, as it will be parsed by a code script later.

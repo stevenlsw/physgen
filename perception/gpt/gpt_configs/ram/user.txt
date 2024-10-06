@@ -1,0 +1,10 @@
+Describe all unique object categories in the given image, ensuring all pixels are included and assigned to one of the categories, do not miss any movable or static object appeared in the image, each category name is a single word and in singular noun format, do not include '-' in the name. Different categories should not be repeated or overlapped with each other in the image. For each category, judge if the instances in the image is movable, the answer is True or False. If there are multiple instances of the same category in the image, the judgement is True only if the object category satisfies the following requirements: 1. The object category is things (objects with a well-defined shape, e.g. car, person) and not stuff (amorphous background regions, e.g. grass, sky, largest segmentation component). 2. All instances in the image of this category are movable with complete shape and fully-visible. 
+
+Format Requirement:
+You must provide your answer in the following JSON format, as it will be parsed by a code script later. Your answer must look like:
+{
+    "category-1": False,
+    "category-2": True
+
+}
+Do not include any other text in your answer. Do not include unnecessary words besides the category name and True/False values. 

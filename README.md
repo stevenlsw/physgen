@@ -87,6 +87,7 @@ Run our [Colab notebook](https://colab.research.google.com/drive/1imGIms3Y4RRtdd
 
 
 ## Perception
+- Please see [perception/README.md](perception/README.md) for details.
 
 | **Input** | **Segmentation** | **Normal** | **Albedo** | **Shading** | **Inpainting** |
 |:---------:|:----------------:|:----------:|:----------:|:-----------:|:--------------:|
