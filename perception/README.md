@@ -39,6 +39,12 @@
 
 ## Albedo and shading estimation
 - We use [Intrinsic](https://github.com/compphoto/Intrinsic/tree/d9741e99b2997e679c4055e7e1f773498b791288) to infer albedo and shading of input image. Follow [Intrinsic setup](https://github.com/compphoto/Intrinsic/tree/d9741e99b2997e679c4055e7e1f773498b791288?tab=readme-ov-file#setup) to install requirements. Recommend to create a new conda environment.
+    ```
+    git clone https://github.com/compphoto/Intrinsic
+    cd Intrinsic/
+    git checkout d9741e99b2997e679c4055e7e1f773498b791288
+    pip install .
+    ```
 
 - Run Intrinsic decomposition on input image
     ```Shell

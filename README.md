@@ -211,7 +211,7 @@ If you find our work useful in your research, please cite:
 ](https://github.com/IDEA-Research/Grounded-Segment-Anything) for segmentation in [perception](#perception) 
 * [GeoWizard
 ](https://github.com/fuxiao0719/GeoWizard) for depth and normal estimation in [perception](#perception) 
-* [Intrinsic](https://github.com/compphoto/Intrinsic/) for intrinsic image decomposition in in [perception](#perception) 
+* [Intrinsic](https://github.com/compphoto/Intrinsic/) for intrinsic image decomposition in [perception](#perception) 
 * [Inpaint-Anything](https://github.com/geekyutao/Inpaint-Anything) for image inpainting in [perception](#perception)
 * [Pymunk](https://github.com/viblo/pymunk) for physics simulation in [simulation](#simulation)
 * [SEINE](https://github.com/Vchitect/SEINE/) for video diffusion in [rendering](#rendering) 
