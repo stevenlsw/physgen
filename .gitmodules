@@ -1,6 +1,9 @@
 [submodule "diffusion/SEINE"]
 	path = diffusion/SEINE
 	url = https://github.com/Vchitect/SEINE.git
+[submodule "perception/Grounded-Segment-Anything"]
+	path = perception/Grounded-Segment-Anything
+	url = https://github.com/IDEA-Research/Grounded-Segment-Anything.git
 [submodule "perception/GeoWizard"]
 	path = perception/GeoWizard
 	url = https://github.com/fuxiao0719/GeoWizard

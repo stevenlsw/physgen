@@ -1,5 +1,65 @@
 # Perception
 
+## Segmentation
+
+### GPT-based Recognize Anything 
+- We use GPT-4V to recognize objects in the image as input prompt for [Grounded-Segment-Anything](https://github.com/IDEA-Research/Grounded-Segment-Anything). Alternatively, you could use any other object recognition model (e.g. [RAM](https://github.com/xinyu1205/recognize-anything)) to get the objects in the given image.
+
+- We put pre-computed GPT-4V result under each `data/${name}/obj_movable.json`. You could skip below and run [segmentation](#grounded-segment-anything) if you don't want to re-run GPT-4V.
+
+- Copy the OpenAI API key into `gpt/gpt_configs/my_apikey`.
+
+- Install requirements
+    ```bash
+    pip install inflect openai==0.28
+    ```
+- Run GPT-4V based RAM
+    ```Shell
+    python gpt_ram.py --img_path ../data/${name}
+    ```
+- The default `save_path` is saved under same folder as input `../data/${name}/intermediate/obj_movable.json`. The output is a list in json format.
+
+    ```shell
+    [
+       {"obj_1": True # True if the object is movable or False if not},
+       {"obj_2": True},
+         ...
+    ]
+    ```
+
+### Grounded-Segment-Anything
+We use [Grounded-Segment-Anything](https://github.com/IDEA-Research/Grounded-Segment-Anything/tree/753dd6675ea7935af401a983e88d159629ad4d5b) to segment the input image given the prompts input. We use the earlier checkout version for the paper. You could adapt the code to the latest version of [Grounded-SAM](https://github.com/IDEA-Research/Grounded-Segment-Anything) or [Grounded-SAM-2](https://github.com/IDEA-Research/Grounded-SAM-2). 
+
+- Follow the [Grounded-SAM setup](https://github.com/IDEA-Research/Grounded-Segment-Anything/tree/753dd6675ea7935af401a983e88d159629ad4d5b?tab=readme-ov-file#install-without-docker)
+    ```Shell
+    cd Grounded-Segment-Anything/
+    git checkout 753dd6675ea7935af401a983e88d159629ad4d5b
+    
+    # Follow Grounded-SAM readme to install requirements
+    
+    # Download pretrained weights to current folder
+    wget https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth
+    wget https://github.com/IDEA-Research/GroundingDINO/releases/download/v0.1.0-alpha/groundingdino_swint_ogc.pth
+
+    ```
+- Segmentation requires the input image `input` and a prompt `prompts_path` for each object in the image. The default prompt path is `../data/${name}/intermediate/obj_movable.json`.
+
+    ```Shell
+    python run_gsam.py --input ../data/${name}
+    ```
+- The default `output` is saved under the same folder as input `../data/${name}` and visualizations under `../data/${name}/intermediate` as follows:
+    ```Shell
+    image folder/  
+        ├── mask.png # segmentation map
+        ├── intermediate/
+            ├── mask.json # segmentation id and and object name
+            ├── vis_mask.jpg # segmentation visualization
+    ```
+    | **Pool** | **Domino** | **Pig Ball** | **Balls**  
+    |:---------:|:----------------:|:----------:| :----------:|
+    | <img src="../data/pool/original.png" alt="pool" width="100"/> | <img src="../data/domino/original.png" alt="domino" width="100"/> | <img src="../data/pig_ball/original.png" alt="pig_ball" width="100">| <img src="../data/balls/original.png" alt="balls" width="100"/> |
+    | <img src="../data/pool/intermediate/vis_mask.jpg" alt="pool" width="100"/> | <img src="../data/domino/intermediate/vis_mask.jpg" alt="domino" width="100"/> | <img src="../data/pig_ball/intermediate/vis_mask.jpg" alt="pig_ball" width="100">| <img src="../data/balls/intermediate/vis_mask.jpg" alt="balls" width="100"/> |
+
 
 ## Physics reasoning
 
