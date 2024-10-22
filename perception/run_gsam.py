@@ -95,7 +95,7 @@ def get_grounding_output(model, image, caption, box_threshold, text_threshold, w
     return boxes_filt, torch.Tensor(scores), pred_phrases
 
 
-def save_mask_data(output_dir, mask_list, label_list):
+def save_mask_data(output_dir, mask_list, label_list, movable_dict):
     value = 0  # 0 for background
     mask_img = torch.zeros(mask_list.shape[-2:])
     for idx, mask in enumerate(mask_list):
@@ -118,13 +118,16 @@ def save_mask_data(output_dir, mask_list, label_list):
     
     json_data = [{
         'value': value,
-        'label': 'background'
+        'label': 'background',
+        'movable': False
     }]
     for label in label_list:
         value += 1
+        movable = movable_dict[label] if (label in movable_dict and movable_dict[label]) else False
         json_data.append({
             'value': value,
             'label': label,
+            'movable': movable
         })
     with open(os.path.join(output_dir, 'mask.json'), 'w') as f:
         json.dump(json_data, f)
@@ -351,6 +354,6 @@ if __name__ == "__main__":
             
     intermediate_dir = os.path.join(output, "intermediate") # save intermediate results and visualization
     os.makedirs(intermediate_dir, exist_ok=True)
-    save_mask_data(intermediate_dir, masks, pred_phrases)
+    save_mask_data(intermediate_dir, masks, pred_phrases, movable_dict)
 
     

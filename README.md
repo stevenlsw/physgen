@@ -191,6 +191,30 @@ We integrate the simulation, relighting and video diffusion rendering in one scr
 bash scripts/run_demo.sh ${name}
 ```
 
+## Evaluation
+We compare ours against open-sourced img-to-video models [DynamiCrafter](https://github.com/Doubiiu/DynamiCrafter), [I2VGen-XL](https://github.com/ali-vilab/VGen), [SEINE](https://github.com/Vchitect/SEINE) and collected reference videos [GT]() in Sec. <font color="red">4.3</font>. 
+
+- Install [pytorch-fid](https://github.com/mseitzer/pytorch-fid): 
+
+  ```
+  pip install pytorch-fid
+  ```
+
+- Download the evaluation data from [here](https://uofi.box.com/s/zl8au6w3jopke9sxb7v9sdyboglcozhl) for all comparisons and unzip to `evaluation` directory. Choose `${method name}` from `DynamiCrafter`, `I2VGen-XL`, `SEINE`, `ours`.
+
+
+- Evaluate image FID:
+  ```Shell
+  python -m pytorch_fid evaluation/${method name}/all  evaluation/GT/all
+  ```
+
+- Evaluate motion FID:
+  ```Shell
+  python -m pytorch_fid evaluation/${method name}/all_flow  evaluation/GT/all_flow
+  ```
+
+- For motion FID, we use [RAFT](https://github.com/princeton-vl/RAFT) to compute optical flow between neighbor frames. The video processing scripts can be found [here](https://drive.google.com/drive/folders/10KDXRGEdcYSJuxLp8v6u1N5EB8Ghs6Xk?usp=sharing).
+
 
 ## Citation
 
