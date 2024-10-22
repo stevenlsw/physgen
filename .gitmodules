@@ -7,3 +7,6 @@
 [submodule "perception/GeoWizard"]
 	path = perception/GeoWizard
 	url = https://github.com/fuxiao0719/GeoWizard
+[submodule "perception/Inpaint-Anything"]
+	path = perception/Inpaint-Anything
+	url = https://github.com/geekyutao/Inpaint-Anything.git

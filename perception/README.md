@@ -97,6 +97,32 @@ We use [Grounded-Segment-Anything](https://github.com/IDEA-Research/Grounded-Seg
     | <img src="../data/pig_ball/original.png" alt="input" width="100"/> | <img src="../data/pig_ball/intermediate/normal_vis.png" alt="normal" width="100"/> | <img src="../data/pig_ball/intermediate/depth_vis.png" alt="normal" width="100"/> |
 
 
+## Inpainting
+We use [Inpaint-Anything](https://github.com/geekyutao/Inpaint-Anything) to inpaint the background of input image. You could adapt the code to any other latest inpainting model.
+
+- Follow [Inpaint-Anything setup](https://github.com/geekyutao/Inpaint-Anything?tab=readme-ov-file#installation) to install requirements and download the [pretrained model](https://drive.google.com/drive/folders/1wpY-upCo4GIW4wVPnlMh_ym779lLIG2A). Recommend to create a new conda environment.
+
+    ```Shell
+        python -m pip install torch torchvision torchaudio
+        python -m pip install -e segment_anything
+        python -m pip install -r lama/requirements.txt 
+        # Download pretrained model under Inpaint-Anything/pretrained_models/
+    ```
+
+- Inpainting requires the input image `../data/${name}/original.png` and a foreground mask of `../data/${name}/mask.png` under the same folder.
+    ```Shell
+    python run_inpaint.py --input ../data/${name} --output ../outputs/${name} --dilate_kernel_size 20
+    ```
+    `dilate_kernel_size` could be adjusted in the above script. For heavy shadow image, increase `dilate_kernel_size` to get better inpainting results.
+
+- The output `inpaint.png` is saved in `outputs/${name}`.
+
+    | **Input** | **Inpainting** 
+    |:---------:|:----------------:|
+    | <img src="../data/pig_ball/original.png" alt="input" width="100"/> | <img src="../data/pig_ball/inpaint.png" alt="inpainting" width="100"/> |
+
+
+
 ## Albedo and shading estimation
 - We use [Intrinsic](https://github.com/compphoto/Intrinsic/tree/d9741e99b2997e679c4055e7e1f773498b791288) to infer albedo and shading of input image. Follow [Intrinsic setup](https://github.com/compphoto/Intrinsic/tree/d9741e99b2997e679c4055e7e1f773498b791288?tab=readme-ov-file#setup) to install requirements. Recommend to create a new conda environment.
     ```
