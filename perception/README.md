@@ -71,8 +71,8 @@ We use [Grounded-Segment-Anything](https://github.com/IDEA-Research/Grounded-Seg
 - Depth and normal are saved in `outputs/${name}`. Visualizations are saved in `outputs/${name}/intermediate`.
     ```Shell
     image folder/ 
-        |── depth.npy
-        |── normal.npy
+        ├──depth.npy
+        ├── normal.npy
         ├── intermediate/
             ├── depth_vis.png
             ├── normal_vis.png
@@ -89,9 +89,9 @@ We use [Grounded-Segment-Anything](https://github.com/IDEA-Research/Grounded-Seg
     ```Shell
     image folder/ 
         ├── depth.npy
-        ├── normal.npy
+        ├──normal.npy
         ├── original.png # optional:for visualization only
-        |── intermediate/
+        ├── intermediate/
             ├── mask.png # complete image segmentation mask
             ├── mask.json # segmentation id and and object name, movability
     ```
@@ -105,10 +105,10 @@ We use [Grounded-Segment-Anything](https://github.com/IDEA-Research/Grounded-Seg
         ├── mask.png # final mask
         ├── edges.json
         ├── intermediate/
-            |── edge_vis.png # red line for edges
-            |── fg_mask_vis.png # text is the segmentation id
-            |── bg_mask_vis.png
-            |── bg_mask.png
+            ├── edge_vis.png # red line for edges
+            ├── fg_mask_vis.png # text is the segmentation id
+            ├── bg_mask_vis.png
+            ├── bg_mask.png
     ```
 
     | **Input** | **Foreground** | **Background** | **Edges**  

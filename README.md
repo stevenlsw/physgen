@@ -21,15 +21,14 @@
 </p>
 
   <p align="center">
-    <a href='https://shaoweiliu.web.illinois.edu/eccv2024_physgen_arxiv.pdf'>
-      <img src='https://img.shields.io/badge/Paper-PDF-green?style=flat&logo=arXiv&logoColor=green' alt='Paper PDF'>
-    </a>
+    <a href='https://arxiv.org/pdf/2409.18964'>
+      <img src='https://img.shields.io/badge/Paper-PDF-green?style=flat&logo=arXiv&logoColor=green' alt='Paper PDF'></a>
+    <a href='https://arxiv.org/abs/2409.18964'><img src='https://img.shields.io/badge/arXiv-2409.18964-b31b1b.svg'  alt='Arxiv'></a>
     <a href='https://stevenlsw.github.io/physgen/' style='padding-left: 0.5rem;'>
-      <img src='https://img.shields.io/badge/Project-Page-blue?style=flat&logo=Google%20chrome&logoColor=blue' alt='Project Page'>
+      <img src='https://img.shields.io/badge/Project-Page-blue?style=flat&logo=Google%20chrome&logoColor=blue' alt='Project Page'></a>
     <a href='https://colab.research.google.com/drive/1imGIms3Y4RRtddA6IuxZ9bkP7N2gVVC_' style='padding-left: 0.5rem;'><img src='https://colab.research.google.com/assets/colab-badge.svg' alt='Google Colab'></a>
     <a href='https://youtu.be/lCc1rHePEFQ' style='padding-left: 0.5rem;'>
-      <img src='https://img.shields.io/badge/Youtube-Video-red?style=flat&logo=youtube&logoColor=red' alt='Youtube Video'>
-    </a>
+      <img src='https://img.shields.io/badge/Youtube-Video-red?style=flat&logo=youtube&logoColor=red' alt='Youtube Video'></a>
   </p>
 
 </p>
@@ -43,14 +42,14 @@ This repository contains the pytorch implementation for the paper [PhysGen: Rigi
 ## 📄 Table of Contents
 
 - [Installation](#installation)
-- [Colab notebook](#colab-notebook)
+- [Colab Notebook](#colab-notebook)
 - [Quick Demo](#quick-demo)
 - [Perception](#perception)
 - [Simulation](#simulation)
 - [Rendering](#rendering)
 - [All-in-One command](#all-in-one-command)
 - [Evaluation](#evaluation)
-- [Custom images video generation](#custom-image)
+- [Custom Image Video Generation](#custom-image-video-generation)
 - [Citation](#citation)
 
 
@@ -67,7 +66,7 @@ This repository contains the pytorch implementation for the paper [PhysGen: Rigi
     pip install -r requirements.txt
     ```
 
-## Colab notebook
+## Colab Notebook
 Run our [Colab notebook](https://colab.research.google.com/drive/1imGIms3Y4RRtddA6IuxZ9bkP7N2gVVC_) for quick start! 
 
 
@@ -219,7 +218,7 @@ We compare ours against open-sourced img-to-video models [DynamiCrafter](https:/
 
 
 
-## Custom image
+## Custom Image Video Generation
 
 - Our method should generally work for side-view and top-down view images. For custom images, please follow the [perception](#perception), [simulation](#simulation), [rendering](#rendering) pipeline to generate the video.
 
@@ -245,7 +244,7 @@ We compare ours against open-sourced img-to-video models [DynamiCrafter](https:/
   ```Shell
   image folder/ 
     ├── original.png
-    ├── mask.png  # segmentation mask
+    ├── mask.png  # foreground segmentation mask
     ├── inpaint.png # background inpainting
     ├── normal.npy # normal map
     ├── shading.npy # shading map by intrinsic decomposition
