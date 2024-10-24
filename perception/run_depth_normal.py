@@ -15,7 +15,6 @@ from models.geowizard_pipeline import DepthNormalEstimationPipeline
 from utils.seed_all import seed_all
 
 
-
 if __name__=="__main__":
     
     logging.basicConfig(level=logging.INFO)
@@ -128,26 +127,14 @@ if __name__=="__main__":
     logging.info(f"device = {device}")
 
     # -------------------- Data --------------------
-    input = args.input
-    EXTENSION_LIST = [".jpg", ".jpeg", ".png"]
-    if os.path.isfile(input) and os.path.splitext(input)[1].lower() in EXTENSION_LIST:
-        test_files = [input]
-        output = args.output
-        if output is None:
-            output = os.path.dirname(input)
-        os.makedirs(output, exist_ok=True)
-    else: 
-        test_files = [os.path.join(args.input, "original.png")]
-        output = args.output
-        if output is None:
-            output = input
-        
-    n_images = len(test_files)
-    if n_images > 0:
-        logging.info(f"Found {n_images} images")
+    if os.path.isfile(args.input):
+        image_path = args.input
     else:
-        logging.error(f"No image found")
-        exit(1)
+        image_path = os.path.join(args.input, "original.png")
+    output = args.output
+    if output is None:
+        output = args.input if os.path.isdir(args.input) else os.path.dirname(args.input)
+    os.makedirs(output, exist_ok=True)
     
     # -------------------- Model --------------------
     if half_precision:
@@ -169,56 +156,54 @@ if __name__=="__main__":
 
     # -------------------- Inference and saving --------------------
     with torch.no_grad():
-        for rgb_path in tqdm(test_files, desc="Estimating Depth & Normal", leave=True):
             
-            # Read input image
-            input_image = Image.open(rgb_path)
+        # Read input image
+        input_image = Image.open(image_path)
 
-            # predict the depth here
-            pipe_out = pipe(input_image,
-                denoising_steps = denoise_steps,
-                ensemble_size= ensemble_size,
-                processing_res = processing_res,
-                match_input_res = match_input_res,
-                domain = domain,
-                color_map = color_map,
-                show_progress_bar = True,
-            )
+        # predict the depth here
+        pipe_out = pipe(input_image,
+            denoising_steps = denoise_steps,
+            ensemble_size= ensemble_size,
+            processing_res = processing_res,
+            match_input_res = match_input_res,
+            domain = domain,
+            color_map = color_map,
+            show_progress_bar = True,
+        )
 
-            depth_pred: np.ndarray = pipe_out.depth_np
-            depth_colored: Image.Image = pipe_out.depth_colored
-            normal_pred: np.ndarray = pipe_out.normal_np
-            normal_colored: Image.Image = pipe_out.normal_colored
+        depth_pred: np.ndarray = pipe_out.depth_np
+        depth_colored: Image.Image = pipe_out.depth_colored
+        normal_pred: np.ndarray = pipe_out.normal_np
+        normal_colored: Image.Image = pipe_out.normal_colored
 
-            # Save as npy
-            depth_npy_save_path = os.path.join(output, f"depth.npy")
-            if os.path.exists(depth_npy_save_path):
-                logging.warning(f"Existing file: '{depth_npy_save_path}' will be overwritten")
-            np.save(depth_npy_save_path, depth_pred)
+        # Save as npy
+        depth_npy_save_path = os.path.join(output, f"depth.npy")
+        if os.path.exists(depth_npy_save_path):
+            logging.warning(f"Existing file: '{depth_npy_save_path}' will be overwritten")
+        np.save(depth_npy_save_path, depth_pred)
 
-            normal_npy_save_path = os.path.join(output, f"normal.npy")
-            if os.path.exists(normal_npy_save_path):
-                logging.warning(f"Existing file: '{normal_npy_save_path}' will be overwritten")
-            np.save(normal_npy_save_path, normal_pred)
+        normal_npy_save_path = os.path.join(output, f"normal.npy")
+        if os.path.exists(normal_npy_save_path):
+            logging.warning(f"Existing file: '{normal_npy_save_path}' will be overwritten")
+        np.save(normal_npy_save_path, normal_pred)
 
-            # Colorize
-            if args.vis:
-                save_intermediate = os.path.join(output, "intermediate")
-                os.makedirs(output, exist_ok=True)
-                os.makedirs(save_intermediate, exist_ok=True)
+        # Colorize
+        if args.vis:
+            intermediate_dir = os.path.join(output, "intermediate")
+            os.makedirs(output, exist_ok=True)
+            os.makedirs(intermediate_dir, exist_ok=True)
 
+            depth_colored_save_path = os.path.join(intermediate_dir, f"depth_vis.png")
+            if os.path.exists(depth_colored_save_path):
+                logging.warning(
+                    f"Existing file: '{depth_colored_save_path}' will be overwritten"
+                )
+            depth_colored.save(depth_colored_save_path)
 
-                depth_colored_save_path = os.path.join(save_intermediate, f"depth_vis.png")
-                if os.path.exists(depth_colored_save_path):
-                    logging.warning(
-                        f"Existing file: '{depth_colored_save_path}' will be overwritten"
-                    )
-                depth_colored.save(depth_colored_save_path)
-
-                normal_colored_save_path = os.path.join(save_intermediate, f"normal_vis.png")
-                if os.path.exists(normal_colored_save_path):
-                    logging.warning(
-                        f"Existing file: '{normal_colored_save_path}' will be overwritten"
-                    )
-                normal_colored.save(normal_colored_save_path)
+            normal_colored_save_path = os.path.join(intermediate_dir, f"normal_vis.png")
+            if os.path.exists(normal_colored_save_path):
+                logging.warning(
+                    f"Existing file: '{normal_colored_save_path}' will be overwritten"
+                )
+            normal_colored.save(normal_colored_save_path)
     print("Done.")

@@ -50,37 +50,15 @@ We use [Grounded-Segment-Anything](https://github.com/IDEA-Research/Grounded-Seg
 - The default `output` is saved under the same folder as input `../data/${name}` and visualizations under `../data/${name}/intermediate` as follows:
     ```Shell
     image folder/  
-        ├── mask.png # segmentation map
         ├── intermediate/
-            ├── mask.json # segmentation id and and object name
+            ├── mask.png # FG and BG segmentation mask
+            ├── mask.json # segmentation id and and object name, movability
             ├── vis_mask.jpg # segmentation visualization
     ```
     | **Pool** | **Domino** | **Pig Ball** | **Balls**  
     |:---------:|:----------------:|:----------:| :----------:|
     | <img src="../data/pool/original.png" alt="pool" width="100"/> | <img src="../data/domino/original.png" alt="domino" width="100"/> | <img src="../data/pig_ball/original.png" alt="pig_ball" width="100">| <img src="../data/balls/original.png" alt="balls" width="100"/> |
     | <img src="../data/pool/intermediate/vis_mask.jpg" alt="pool" width="100"/> | <img src="../data/domino/intermediate/vis_mask.jpg" alt="domino" width="100"/> | <img src="../data/pig_ball/intermediate/vis_mask.jpg" alt="pig_ball" width="100">| <img src="../data/balls/intermediate/vis_mask.jpg" alt="balls" width="100"/> |
-
-
-## Physics reasoning
-
-- Install requirements
-    ```bash
-    pip install openai==0.28 ruamel.yaml
-    ```
-- Copy the OpenAI API key into `gpt/gpt_configs/my_apikey`.
-
-- Physics reasoning requires the following input for each image:
-     ```Shell
-    image folder/ 
-        ├── original.png
-        ├── mask.png  # movable segmentation mask
-    ```
-- Run GPT-4V physical property reasoning by the following command:
-    ```Shell
-    python gpt_physic.py --input ../data/${name} --output ../outputs/${name}
-    ```
-
-- The output `physics.yaml` contains the physical properties and primitive shape of each object segment in the image. Note GPT-4V outputs may vary for different runs and differ from the original setting in `data/${name}/sim.yaml`. Users could adjust accordingly to each run output.
 
 
 ## Depth and Normal Estimation
@@ -90,11 +68,54 @@ We use [Grounded-Segment-Anything](https://github.com/IDEA-Research/Grounded-Seg
     ```Shell
     python run_depth_normal.py --input ../data/${name} --output ../outputs/${name} --vis
     ```
-- `depth.npy` and `normal.npy` are saved in `outputs/${name}`. Visualization of depth and normal are saved in `outputs/${name}/intermediate`.
+- Depth and normal are saved in `outputs/${name}`. Visualizations are saved in `outputs/${name}/intermediate`.
+    ```Shell
+    image folder/ 
+        |── depth.npy
+        |── normal.npy
+        ├── intermediate/
+            ├── depth_vis.png
+            ├── normal_vis.png
+    ```
 
     | **Input** | **Normal** | **Depth** 
     |:---------:|:----------------:|:----------:|
     | <img src="../data/pig_ball/original.png" alt="input" width="100"/> | <img src="../data/pig_ball/intermediate/normal_vis.png" alt="normal" width="100"/> | <img src="../data/pig_ball/intermediate/depth_vis.png" alt="normal" width="100"/> |
+
+
+## Foreground / Background & Edge Detection
+- We separate the foreground and background using the segmentation mask. Foreground objects with complete masks are used for physics reasoning and simulation, while truncated objects are treated as static. We use edges from static objects and the background as physical boundaries for simulation. 
+- Module requires the following input for each image:
+    ```Shell
+    image folder/ 
+        ├── depth.npy
+        ├── normal.npy
+        ├── original.png # optional:for visualization only
+        |── intermediate/
+            ├── mask.png # complete image segmentation mask
+            ├── mask.json # segmentation id and and object name, movability
+    ```
+- Run foreground/background separation and edge detection
+    ```Shell
+    python run_fg_bg.py --input ../data/${name} --vis_edge
+    ```
+- The default output is saved under the same folder as input `../data/${name}`, contains the final foreground objects mask `mask.png` and edge list `edges.json` saved in `outputs/${name}`. 
+    ```Shell
+    image folder/ 
+        ├── mask.png # final mask
+        ├── edges.json
+        ├── intermediate/
+            |── edge_vis.png # red line for edges
+            |── fg_mask_vis.png # text is the segmentation id
+            |── bg_mask_vis.png
+            |── bg_mask.png
+    ```
+
+    | **Input** | **Foreground** | **Background** | **Edges**  
+    |:---------:|:----------------:|:----------:| :----------:|
+    | <img src="../data/pig_ball/original.png" alt="input" width="100"/> | <img src="../data/pig_ball/intermediate/fg_mask_vis.png" alt="mask" width="100"/> | <img src="../data/pig_ball/intermediate/bg_mask_vis.png" alt="edges" width="100"/> | <img src="../data/pig_ball/intermediate/edge_vis.png" alt="edges" width="100"/> |
+ - We could simulate all foreground objects by specifying their velocity and acceleration use the segmentation id in simulation.
+
 
 
 ## Inpainting
@@ -122,8 +143,29 @@ We use [Inpaint-Anything](https://github.com/geekyutao/Inpaint-Anything) to inpa
     | <img src="../data/pig_ball/original.png" alt="input" width="100"/> | <img src="../data/pig_ball/inpaint.png" alt="inpainting" width="100"/> |
 
 
+## Physics Reasoning
 
-## Albedo and shading estimation
+- Install requirements
+    ```bash
+    pip install openai==0.28 ruamel.yaml
+    ```
+- Copy the OpenAI API key into `gpt/gpt_configs/my_apikey`.
+
+- Physics reasoning requires the following input for each image:
+     ```Shell
+    image folder/ 
+        ├── original.png
+        ├── mask.png  # movable segmentation mask
+    ```
+- Run GPT-4V physical property reasoning by the following command:
+    ```Shell
+    python gpt_physic.py --input ../data/${name} --output ../outputs/${name}
+    ```
+
+- The output `physics.yaml` contains the physical properties and primitive shape of each object segment in the image. Note GPT-4V outputs may vary for different runs and differ from the original setting in `data/${name}/sim.yaml`. Users could adjust accordingly to each run output.
+
+
+## Albedo and Shading Estimation
 - We use [Intrinsic](https://github.com/compphoto/Intrinsic/tree/d9741e99b2997e679c4055e7e1f773498b791288) to infer albedo and shading of input image. Follow [Intrinsic setup](https://github.com/compphoto/Intrinsic/tree/d9741e99b2997e679c4055e7e1f773498b791288?tab=readme-ov-file#setup) to install requirements. Recommend to create a new conda environment.
     ```
     git clone https://github.com/compphoto/Intrinsic

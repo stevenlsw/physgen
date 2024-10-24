@@ -48,44 +48,38 @@ if __name__ == '__main__':
     
     args = parser.parse_args()
    
-    input = args.input
-    EXTENSION_LIST = [".jpg", ".jpeg", ".png"]
-    if os.path.isfile(input) and os.path.splitext(input)[1].lower() in EXTENSION_LIST:
-        test_files = [input]
-        output = args.output
-        if output is None:
-            output = os.path.dirname(input)
-        os.makedirs(output, exist_ok=True)
-    else: 
-        test_files = [os.path.join(args.input, "original.png")]
-        output = args.output
-        if output is None:
-            output = input
+    if os.path.isfile(args.input):
+        image_path = args.input
+    else:
+        image_path = os.path.join(args.input, "original.png")
+    output = args.output
+    if output is None:
+        output = args.input if os.path.isdir(args.input) else os.path.dirname(args.input)
+    os.makedirs(output, exist_ok=True)
     
     model = load_models('paper_weights')
-    for rgb_path in tqdm(test_files, desc="Estimating Albedo & Shading", leave=True):
         
-        # Read input image
-        img = load_image(rgb_path, bits=8)
-        # run the model on the image using R_0 resizing
-        
-        results = run_pipeline(model, img, resize_conf=0.0, maintain_size=True)
+    # Read input image
+    img = load_image(image_path, bits=8)
+    # run the model on the image using R_0 resizing
+    
+    results = run_pipeline(model, img, resize_conf=0.0, maintain_size=True)
 
-        albedo = results['albedo']
-        inv_shd = results['inv_shading']
-        
-        shd = uninvert(inv_shd)
-        shd_save_path = os.path.join(output, "shading.npy")
-        np.save(shd_save_path, shd)
-        
-        if args.vis:
-            save_intermediate = os.path.join(output, "intermediate")
-            os.makedirs(save_intermediate, exist_ok=True)
+    albedo = results['albedo']
+    inv_shd = results['inv_shading']
+    
+    shd = uninvert(inv_shd)
+    shd_save_path = os.path.join(output, "shading.npy")
+    np.save(shd_save_path, shd)
+    
+    if args.vis:
+        intermediate_dir = os.path.join(output, "intermediate")
+        os.makedirs(intermediate_dir, exist_ok=True)
 
-            alb_save_path = os.path.join(save_intermediate, "albedo.npy")
-            np.save(alb_save_path, albedo)
-            np_to_pil(albedo).save(os.path.join(save_intermediate, 'albedo_vis.png'))
-            np_to_pil(view(shd)).save(os.path.join(save_intermediate, 'shading_vis.png'))
-        
+        alb_save_path = os.path.join(intermediate_dir, "albedo.npy")
+        np.save(alb_save_path, albedo)
+        np_to_pil(albedo).save(os.path.join(intermediate_dir, 'albedo_vis.png'))
+        np_to_pil(view(shd)).save(os.path.join(intermediate_dir, 'shading_vis.png'))
+    
         
         

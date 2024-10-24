@@ -224,6 +224,7 @@ if __name__ == "__main__":
     if output is None:
         output = args.input if os.path.isdir(args.input) else os.path.dirname(args.input)
     os.makedirs(output, exist_ok=True)
+    
     if args.prompts_path is None:
         prompts_path = os.path.join(args.input, "intermediate", "obj_movable.json")
     else:

@@ -49,6 +49,8 @@ This repository contains the pytorch implementation for the paper [PhysGen: Rigi
 - [Simulation](#simulation)
 - [Rendering](#rendering)
 - [All-in-One command](#all-in-one-command)
+- [Evaluation](#evaluation)
+- [Custom images video generation](#custom-image)
 - [Citation](#citation)
 
 
@@ -215,6 +217,63 @@ We compare ours against open-sourced img-to-video models [DynamiCrafter](https:/
 
 - For motion FID, we use [RAFT](https://github.com/princeton-vl/RAFT) to compute optical flow between neighbor frames. The video processing scripts can be found [here](https://drive.google.com/drive/folders/10KDXRGEdcYSJuxLp8v6u1N5EB8Ghs6Xk?usp=sharing).
 
+
+
+## Custom image
+
+- Our method should generally work for side-view and top-down view images. For custom images, please follow the [perception](#perception), [simulation](#simulation), [rendering](#rendering) pipeline to generate the video.
+
+- Critical steps (assume proper environment installed)
+
+- Input:
+  ```Shell
+  image folder/ 
+    ├── original.png
+  ```
+- Perception:
+  ```Shell
+  cd perception/
+  python gpt_ram.py --img_path ${image folder}
+  python run_gsam.py --input ${image folder}
+  python run_depth_normal.py --input ${image folder} --vis
+  python run_fg_bg.py --input ${image folder} --vis_edge
+  python run_inpaint.py --input ${image folder} --dilate_kernel_size 20
+  python run_albedo_shading.py --input ${image folder} --vis
+  ```
+
+- After perception step, you should get
+  ```Shell
+  image folder/ 
+    ├── original.png
+    ├── mask.png  # segmentation mask
+    ├── inpaint.png # background inpainting
+    ├── normal.npy # normal map
+    ├── shading.npy # shading map by intrinsic decomposition
+    ├── edges.json # edges
+    ├── physics.yaml # physics properties of foreground objects
+  ```
+
+- Compose `${image folder}/sim.yaml` for simulation by specifying the object init conditions (you could check foreground objects ids in `${image folder}/intermediate/fg_mask_vis.png`), please see example in `data/pig_ball/sim.yaml`, copy the content in `physics.yaml` to `sim.yaml` and edges information from `edges.json`.
+
+- Run simulation:
+  ```Shell
+  cd simulation/
+  python animate.py --data_root ${image_folder} --save_root ${image_folder} --config ${image_folder}/sim.yaml
+  ```
+
+- Run rendering:
+  ```Shell
+  cd relight/   
+  python relight.py --perception_input ${image_folder} --previous_output ${image_folder}
+  cd ../diffusion/
+  python video_diffusion.py --perception_input ${image_folder} --previous_output ${image_folder} --denoise_strength ${denoise_strength}
+  ```
+
+- We put some custom images under `custom_data` folder. You could play with each image by running the above steps and see different physical simulations.
+
+  | **Balls Shelf** | **Boxes** | **Kitchen** | **Table** | **Toy**  
+  | :---------------: | :-------: | :---------: | :-------: | :----------: | 
+  | <img src="custom_data/balls_shelf/original.png" alt="Balls Shelf" width="100"/> | <img src="custom_data/boxes/original.png" alt="Boxes" width="100"/> | <img src="custom_data/kitchen/original.png" alt="Kitchen" width="100"/> | <img src="custom_data/table/original.png" alt="Table" width="100"/> | <img src="custom_data/wall_toy/original.png" alt="Wall Toy" width="100"/> |
 
 ## Citation
 
